@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Your Requests</title>
+</head>
+<body>
+    <h1>Your Requests -- Logged in as {{ user_name }}</h1>
+
+    {% if user_requests or user_responses %}
+        <ul>
+            {% for request in user_requests %}
+                <li>
+                    <strong>Request Name:</strong> {{ request.request }}<br>
+                    <strong>File:</strong> {{ request.file }}
+                </li>
+
+                {% for response in request.responses.all %}
+                    <p><strong>Response:</strong> {{ response.response }}</p>
+                {% empty %}
+                    <p>No responses available for this request.</p>
+                {% endfor %}
+
+
+
+
+
+            {% endfor %}
+
+        </ul>
+    {% else %}
+        <p>You have not made any requests yet.</p>
+    {% endif %}
+</body>
+</html>
